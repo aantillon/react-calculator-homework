@@ -9,6 +9,7 @@ const Key = (props) => {
       value={props.keyElement.value}
       className={props.keyElement.cssClasses}
       id={props.keyElement.htmlId}
+      onClick={props.keyPress}
     >
         {props.keyElement.value}
     </button>
