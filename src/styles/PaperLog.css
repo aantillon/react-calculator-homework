@@ -1,0 +1,10 @@
+#paperlog {
+  background: #efefef;
+  padding: 20px;
+}
+
+.log-output {
+  margin-top: 40px;
+  font-size: 18px;
+  line-height: 250%;
+}

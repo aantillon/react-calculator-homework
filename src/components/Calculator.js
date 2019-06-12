@@ -1,6 +1,8 @@
 import React from 'react';
 import Display from './Display';
 import Keypad from './Keypad';
+import PaperLog from './PaperLog';
+import '../styles/General.css';
 import '../styles/Calculator.css';
 
 class Calculator extends React.Component {
@@ -14,26 +16,18 @@ class Calculator extends React.Component {
 
   deleteKeyPress = (e) => {
     e.preventDefault();
-    let currentLog = this.state.log;
-    console.log(currentLog);
     this.setState({ result: 0 });
-    console.log(this.state);
   }
 
   equalKeyPress = (e) => {
     e.preventDefault();
     // eslint-disable-next-line
     const result = eval.call(null, this.state.result);
-    const logEntry = `${this.state.result}=${result}`;
+    const logEntry = `${this.state.result} = ${result}`;
     this.setState({
       log: this.state.log.concat(logEntry).slice(-5),
       result: result
     });
-    console.log(this.state);
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
   }
 
   componentDidMount() {
@@ -44,10 +38,14 @@ class Calculator extends React.Component {
 
   render() {
     return (
-      <div id="background">
-        <Display output={this.state.result} />
-        <Keypad keyPressFn={this.keyPress} deleteKeyFn={this.deleteKeyPress} calculateFn={this.equalKeyPress} />
-        <div>{this.state.log}</div>
+      <div className="ui grid">
+        <div id="calculator" className="four wide computer six wide tablet six wide mobile column">
+          <Display output={this.state.result} />
+          <Keypad keyPressFn={this.keyPress} deleteKeyFn={this.deleteKeyPress} calculateFn={this.equalKeyPress} />
+        </div>
+        <div id="paperlog" className="three wide computer four wide tablet six wide mobile column">
+          <PaperLog output={this.state.log} />
+        </div>
       </div>
     );
   }
